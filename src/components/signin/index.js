@@ -9,11 +9,13 @@ const SignIn = (props) => {
 
     const loginFormik = useFormik ({
         initialValues: {
-            loginEmail: "",
-            loginPassword: "",
+            email: "",
+            password: "",
         },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: async (values) => {
+            console.log('uservalues++++++++++++++++++++++',values)
+            const loggedInUser = await Services.loginUserService(values);
+            alert(JSON.stringify(loggedInUser, null, 2));
         },
     })
 
@@ -28,26 +30,26 @@ const SignIn = (props) => {
                                     Don't have an account? <Link to={'/'} className="link">Register here.</Link>
                             </div>
                             <div className="email input-container login-input">
-                            {loginFormik.touched.loginEmail && loginFormik.errors.loginEmail ? <div className="input-error-div">{loginFormik.errors.loginEmail}</div> : null}
+                            {loginFormik.touched.email && loginFormik.errors.email ? <div className="input-error-div">{loginFormik.errors.email}</div> : null}
                                 <i class="far fa-envelope"></i>
                                 <input 
-                                id="loginEmail"
-                                name="loginEmail"
+                                id="email"
+                                name="email"
                                 placeholder="email"
                                 onChange={loginFormik.handleChange}
                                 onBlur={loginFormik.handleBlur}
-                                value={loginFormik.values.loginEmail}/>
+                                value={loginFormik.values.email}/>
                             </div>
                             <div className="password input-container login-input">
-                            {loginFormik.touched.loginPassword && loginFormik.errors.loginPassword ? <div className="input-error-div">{loginFormik.errors.loginPassword}</div> : null}
+                            {loginFormik.touched.password && loginFormik.errors.password ? <div className="input-error-div">{loginFormik.errors.password}</div> : null}
                                 <i class="fas fa-key"></i>
                                 <input
-                                    id="loginPassword"
-                                    name="loginPassword"
+                                    id="password"
+                                    name="password"
                                     placeholder="password"
                                     onChange={loginFormik.handleChange}
                                     onBlur={loginFormik.handleBlur}
-                                    value={loginFormik.values.loginPassword}
+                                    value={loginFormik.values.password}
                                 />
                             </div>
                             <div className="input-container">
