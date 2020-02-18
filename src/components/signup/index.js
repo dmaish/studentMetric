@@ -1,10 +1,12 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { Link } from 'react-router-dom';
 
 import Services from './../../services';
 import './signup.scss';
 
 const SignUp = (props) => {
+
 
     const formik = useFormik ({
         initialValues: {
@@ -17,21 +19,20 @@ const SignUp = (props) => {
 
         onSubmit: async (values) => {
             const newUser = await Services.createUserService(values);
-            console.log('^^^^^^^^^^^^^^^^^^^^^^', newUser);
+            // eslint-disable-next-line no-unused-expressions
+            newUser.data.username ? props.history.push("/signin") : null;
         },
     });
 
       return(
-        <div className="landing-page">
           <div className="auth-modal">
-
             <div className="auth-div">
           <form className="register-div" onSubmit={formik.handleSubmit} autoComplete="off"> 
                                 <div className="title">
                                     REGISTER
                                 </div>
                                 <div className="tagline">
-                                    Already have an account? Login here.
+                                    Already have an account? <Link to={'/signin'} className="link">Login here.</Link>
                                 </div>
 
                                 <div className="username input-container">
@@ -93,7 +94,6 @@ const SignUp = (props) => {
 
                         </form>
           </div>
-        </div>
         </div>
       );
   }
