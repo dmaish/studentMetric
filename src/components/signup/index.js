@@ -1,9 +1,10 @@
 import React from 'react';
 import { useFormik } from 'formik';
 
+import Services from './../../services';
 import './signup.scss';
 
-const SignUp = () => {
+const SignUp = (props) => {
 
     const formik = useFormik ({
         initialValues: {
@@ -15,7 +16,8 @@ const SignUp = () => {
         // validationSchema: yupRegObj,
 
         onSubmit: async (values) => {
-
+            const newUser = await Services.createUserService(values);
+            console.log('^^^^^^^^^^^^^^^^^^^^^^', newUser);
         },
     });
 
