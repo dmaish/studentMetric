@@ -1,18 +1,26 @@
-import axios from 'axios';
+import firebaseObj from './../firebase';
 
 export default class Services {
-    baseUrl = 'http://localhost:8000/v1';
 
-    static async createUserService (user) {
-        const newUser = await axios.post('http://localhost:8000/v1/user', user);
-        return newUser;
+    static async createStudentService (student) {
+        const { studentName, subject1, marks1, subject2, marks2 } = student;
+        await firebaseObj.database().ref(`/allStudents/${student.studentName}`).set({
+            studentName,
+            subject1,
+            marks1,
+            subject2,
+            marks2
+        });
+        const allStudents = await firebaseObj.database().ref('allStudents').once('value').then((snap) => snap.val());
+        console.log('allstuddddeeents', allStudents)
     }
 
-    static async loginUserService (user) {
-        console.log('+++++loginuserservic', user);
-        const loggedInUser = await axios.get('http://localhost:8000/v1/user', {
-    params: user
-  });
-        return loggedInUser;
+    static async getAllStudents () {
+        let studentDetails = [];
+        const allStudents = await firebaseObj.database().ref('allStudents').once('value').then((snap) => snap.val());
+        for (let student in allStudents){
+            studentDetails.push(allStudents[student]);
+        }
+        return studentDetails;
     }
 }

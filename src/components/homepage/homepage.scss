@@ -1,9 +1,9 @@
-.landing-page {
+.home-page {
     width: 100vw;
     height: 100vh;
 }
 
-.auth-modal {
+.student-modal {
     position: absolute;
     background-color: blue;
     margin: 0 auto;
@@ -18,7 +18,7 @@
     background-position: -13%;
     border-radius: 3px;
 
-    .auth-div{
+    .student-div{
         position: relative;
         top: 0;
         width: 100%;
@@ -26,12 +26,12 @@
         z-index: 5;
         border-bottom-right-radius: 3px;
         border-top-right-radius: 3px;
-        background: linear-gradient(to right bottom, rgba(0, 246, 209, 0.8) , rgba(43, 159, 236, 1), rgba(47,70,228,1), rgba(78,50,241,1));  
+        background: linear-gradient(to right bottom, #00f6d1cc , rgba(43, 159, 236, 1), rgba(47,70,228,1), rgba(78,50,241,1));  
     }
     
 }
 
-.register-div, .login-div {
+.add-student-div{
     position: relative;
     top: 10%;
     .title {
@@ -49,19 +49,6 @@
     .input-container {
         text-align: center;
         margin-top: 6%;
-
-        .input-error-div {
-            position: absolute;
-            z-index: 2;
-            text-align: right;
-            width: 70%;
-            margin: 0 auto;
-            color: #ff2400;
-            font-size: 1.7vh;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            text-align: right;
-        }
     }
     input {
         width: 67%;
