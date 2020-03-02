@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { Link } from 'react-router-dom';
 import Services from '../../services';
 import './displaystudent.scss';
 
@@ -51,6 +51,7 @@ export default class Displaystudent extends Component {
                     ))}
                 </ul>  : 
                 <div>waiting for students</div>}
+
             </div>
         )
     }

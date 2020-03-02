@@ -20,9 +20,8 @@ const SignUp = (props) => {
 
         onSubmit: async (values) => {
             const newStudent = await Services.createStudentService(values);
-            // eslint-disable-next-line no-unused-expressions
-            // newUser.data.studentName ? props.history.push("/signin") : null;
-            console.log(values)
+            alert(JSON.stringify({message: 'student details addition successful'}));
+            
         },
     });
 
@@ -31,7 +30,7 @@ const SignUp = (props) => {
             <div className="student-div">
           <form className="add-student-div" onSubmit={formik.handleSubmit} autoComplete="off"> 
                                 <div className="title">
-                                    REGISTER STUDENT
+                                    ADD STUDENT DETAILS
                                 </div>
                                 <div className="tagline">
                                     <Link to={'/displaystudents'} className="link">view students</Link>
@@ -100,6 +99,11 @@ const SignUp = (props) => {
                                         className="auth-button">
                                         submit details
                                     </button>
+                                </div>
+
+
+                                <div className="tagline">
+                                    <Link to={'/displaystudents'} className="link">view students</Link>
                                 </div>
 
                         </form>
